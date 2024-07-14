@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.*;
 public class JUnitExampleTest {
 
     @BeforeAll
-static void beforeAll() {
+    static void beforeAll() {
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://github.com/";
         Configuration.pageLoadStrategy = "eager";
@@ -20,17 +20,13 @@ static void beforeAll() {
     void exampleTest() {
         open("/selenide/selenide");
         $("#wiki-tab").click();
-        $(byText("Soft assertions")).shouldBe(visible);
-        $(byText("Soft assertions")).click();
-                $("#wiki-body").shouldHave(text(
-                "@ExtendWith({SoftAssertsExtension.class})\n" +
-                "class Tests {\n" +
-                "@Test\n" +
-                "void test() {\n" +
-                "Configuration.assertionMode = SOFT;\n" +
-                "open(\"page.html\");\n" +
-                "$(\"#first\").should(visible).click();\n" +
-                "$(\"#second\").should(visible).click();\n"));
+        $("#wiki-body").$(byText("Soft assertions")).shouldBe(visible);
+        $("#wiki-body").$(byText("Soft assertions")).click();
+        $("#wiki-body").shouldHave(text("@ExtendWith({SoftAssertsExtension.class})\n"
+                + "class Tests {\n" + "@Test\n" + "void test() {\n"
+                + "Configuration.assertionMode = SOFT;\n"
+                + "open(\"page.html\");\n" + "$(\"#first\").should(visible).click();\n"
+                + "$(\"#second\").should(visible).click();\n"));
 
     }
 }
