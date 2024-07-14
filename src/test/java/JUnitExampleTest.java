@@ -28,6 +28,6 @@ public class JUnitExampleTest {
                 + "Configuration.assertionMode = SOFT;\n"
                 + "open(\"page.html\");\n" + "$(\"#first\").should(visible).click();\n"
                 + "$(\"#second\").should(visible).click();\n"));
-sleep(5000);
+
     }
 }
